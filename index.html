@@ -1,1167 +1,557 @@
-<!doctype html>
-<html lang="en" class="scroll-smooth">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>OpenLicense Guide | Choose the Right GitHub License</title>
-    <!-- Tailwind CSS via CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              brand: {
-                50: "#f0f7ff",
-                100: "#e0effe",
-                500: "#0284c7",
-                600: "#0369a1",
-                700: "#075985",
-              },
-            },
-          },
-        },
-      };
-    </script>
-    <!-- Lucide Icons CDN -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-      /* Smooth transitions for theme switching */
-      body {
-        transition:
-          background-color 0.3s ease,
-          color 0.3s ease;
-      }
-      /* Custom scrollbar */
-      ::-webkit-scrollbar {
-        width: 8px;
-        height: 8px;
-      }
-      ::-webkit-scrollbar-track {
-        background: rgba(0, 0, 0, 0.05);
-      }
-      .dark ::-webkit-scrollbar-track {
-        background: rgba(255, 255, 255, 0.05);
-      }
-      ::-webkit-scrollbar-thumb {
-        background: rgba(100, 116, 139, 0.4);
-        border-radius: 4px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: rgba(100, 116, 139, 0.7);
-      }
-    </style>
-  </head>
-  <body
-    class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 min-h-screen flex flex-col font-sans antialiased"
-  >
-    <!-- Header / Navigation -->
-    <header
-      class="sticky top-0 z-40 w-full backdrop-blur flex-none border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80"
-    >
-      <div
-        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between"
-      >
-        <div class="flex items-center space-x-3">
-          <div
-            class="p-2 bg-brand-500/10 text-brand-600 dark:text-brand-400 rounded-lg"
-          >
-            <i data-lucide="scale" class="w-6 h-6"></i>
-          </div>
-          <div>
-            <span
-              class="text-lg font-bold tracking-tight text-slate-900 dark:text-white"
-              >OpenLicense</span
-            >
-            <span
-              class="text-xs px-2 py-0.5 ml-2 bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 font-semibold rounded-full border border-emerald-300 dark:border-emerald-800"
-              >GitHub Guide</span
-            >
-          </div>
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="OpenLicense & Git Hub Suite: Production-ready multilingual & themeable web architecture for Open Source licenses comparison and Git/GitHub version control mastery.">
+  <meta name="theme-color" content="#0284c7">
+  <title>OpenLicense & Git Hub Suite | Open Source Licenses & Version Control Architecture</title>
+  
+  <!-- Favicon / SVG Icon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230284c7'><path d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/></svg>">
+  
+  <!-- External Pure CSS Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  
+  <!-- External Vanilla JavaScript Engine (deferred) -->
+  <script src="assets/js/app.js" defer></script>
+</head>
+<body>
+
+  <!-- =========================================================================
+       1. Header & Navigation Bar
+       ========================================================================= -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a href="#home" class="brand-wrapper" aria-label="OpenLicense Suite Home">
+        <div class="brand-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <div>
+          <span class="brand-title" data-i18n="app_title">OpenLicense & Git Hub Suite</span>
+        </div>
+        <span class="brand-badge">v2.0</span>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="#home" class="nav-link active" data-i18n="nav_home">Home</a></li>
+          <li><a href="#matrix" class="nav-link" data-i18n="nav_licenses">Licenses</a></li>
+          <li><a href="#matrix" class="nav-link" data-i18n="nav_matrix">Comparison Matrix</a></li>
+          <li><a href="#git-guide" class="nav-link" data-i18n="nav_git_guide">Git DevOps Guide</a></li>
+        </ul>
+      </nav>
+
+      <!-- Action Controls: Language Switcher & Theme Toggle -->
+      <div class="header-actions">
+        <!-- Language Switcher Select -->
+        <div class="lang-select-wrapper">
+          <span class="lang-icon-prefix" aria-hidden="true">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+          </span>
+          <select id="language-switcher" class="lang-select" aria-label="Select Application Language" data-i18n-title="nav_language">
+            <option value="en">English (EN)</option>
+            <option value="fr">Français (FR)</option>
+            <option value="ar">العربية (AR - RTL)</option>
+            <option value="es">Español (ES)</option>
+            <option value="de">Deutsch (DE)</option>
+            <option value="it">Italiano (IT)</option>
+            <option value="ru">Русский (RU)</option>
+          </select>
+          <span class="lang-icon-suffix" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </span>
         </div>
 
-        <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
-          <a
-            href="#matrix"
-            class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors"
-            >License Matrix</a
-          >
-          <a
-            href="#wizard"
-            class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors"
-            >Decision Wizard</a
-          >
-          <a
-            href="#licenses"
-            class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors"
-            >License Catalog</a
-          >
-        </nav>
-
-        <div class="flex items-center space-x-3">
-          <button
-            id="themeToggle"
-            class="p-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
-            title="Toggle Theme"
-          >
-            <i id="themeIcon" data-lucide="moon" class="w-5 h-5"></i>
-          </button>
-        </div>
-      </div>
-    </header>
-
-    <!-- Hero Section -->
-    <main class="flex-1">
-      <section
-        class="relative overflow-hidden py-16 sm:py-24 border-b border-slate-200 dark:border-slate-800 bg-gradient-to-b from-white via-slate-50 to-slate-100 dark:from-slate-900 dark:via-slate-950 dark:to-slate-950"
-      >
-        <div
-          class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10"
-        >
-          <div
-            class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-brand-50 dark:bg-brand-950 text-brand-600 dark:text-brand-300 border border-brand-200 dark:border-brand-800 mb-6"
-          >
-            <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Clear,
-            Developer-Friendly Guidance
-          </div>
-          <h1
-            class="text-4xl sm:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-6"
-          >
-            Choose the right license for your
-            <span
-              class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-sky-400"
-              >codebase</span
-            >.
-          </h1>
-          <p
-            class="text-lg sm:text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto mb-10 leading-relaxed"
-          >
-            Without a license, default copyright laws apply, meaning you retain
-            all rights and nobody can reproduce, distribute, or create
-            derivative works from your repository. Pick the right open-source
-            license in seconds.
-          </p>
-          <div class="flex flex-wrap items-center justify-center gap-4">
-            <a
-              href="#wizard"
-              class="px-6 py-3 rounded-lg bg-brand-600 hover:bg-brand-700 text-white font-semibold shadow-md shadow-brand-500/20 transition-all flex items-center gap-2"
-            >
-              <i data-lucide="sparkles" class="w-4 h-4"></i> Run Decision Wizard
-            </a>
-            <a
-              href="#matrix"
-              class="px-6 py-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold hover:bg-slate-50 dark:hover:bg-slate-700 transition-all flex items-center gap-2"
-            >
-              <i data-lucide="table" class="w-4 h-4"></i> Compare Table
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <!-- License Wizard Section -->
-      <section id="wizard" class="py-16 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div
-          class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 sm:p-10 shadow-sm relative overflow-hidden"
-        >
-          <div class="flex items-center space-x-3 mb-6">
-            <div
-              class="p-2 bg-brand-500/10 text-brand-600 dark:text-brand-400 rounded-lg"
-            >
-              <i data-lucide="compass" class="w-6 h-6"></i>
-            </div>
-            <div>
-              <h2 class="text-2xl font-bold text-slate-900 dark:text-white">
-                License Decision Wizard
-              </h2>
-              <p class="text-sm text-slate-500 dark:text-slate-400">
-                Answer 3 questions to find the optimal license for your goals.
-              </p>
-            </div>
-          </div>
-
-          <div id="wizardQuestions" class="space-y-6">
-            <!-- Step 1 -->
-            <div>
-              <label
-                class="block text-sm font-semibold text-slate-900 dark:text-slate-200 mb-2"
-                >1. What is your primary philosophy regarding reuse?</label
-              >
-              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                <button
-                  onclick="setWizardVal('philosophy', 'permissive')"
-                  class="wiz-btn-philosophy p-4 border rounded-xl text-left border-slate-200 dark:border-slate-800 hover:border-brand-500 dark:hover:border-brand-500 transition-all"
-                  data-val="permissive"
-                >
-                  <div class="font-semibold text-sm mb-1">
-                    Max Freedom (Permissive)
-                  </div>
-                  <div class="text-xs text-slate-500 dark:text-slate-400">
-                    Anyone can use, change, and sell it, even in closed-source
-                    software.
-                  </div>
-                </button>
-                <button
-                  onclick="setWizardVal('philosophy', 'copyleft')"
-                  class="wiz-btn-philosophy p-4 border rounded-xl text-left border-slate-200 dark:border-slate-800 hover:border-brand-500 dark:hover:border-brand-500 transition-all"
-                  data-val="copyleft"
-                >
-                  <div class="font-semibold text-sm mb-1">
-                    Keep it Open (Copyleft)
-                  </div>
-                  <div class="text-xs text-slate-500 dark:text-slate-400">
-                    Derivative works must also be open-source under the same
-                    terms.
-                  </div>
-                </button>
-                <button
-                  onclick="setWizardVal('philosophy', 'none')"
-                  class="wiz-btn-philosophy p-4 border rounded-xl text-left border-slate-200 dark:border-slate-800 hover:border-brand-500 dark:hover:border-brand-500 transition-all"
-                  data-val="none"
-                >
-                  <div class="font-semibold text-sm mb-1">Public Domain</div>
-                  <div class="text-xs text-slate-500 dark:text-slate-400">
-                    Give up all rights completely. No copyright attribution
-                    needed.
-                  </div>
-                </button>
-              </div>
-            </div>
-
-            <!-- Step 2 -->
-            <div>
-              <label
-                class="block text-sm font-semibold text-slate-900 dark:text-slate-200 mb-2"
-                >2. Do you need explicit patent protection & trademark
-                clauses?</label
-              >
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <button
-                  onclick="setWizardVal('patent', 'yes')"
-                  class="wiz-btn-patent p-4 border rounded-xl text-left border-slate-200 dark:border-slate-800 hover:border-brand-500 dark:hover:border-brand-500 transition-all"
-                  data-val="yes"
-                >
-                  <div class="font-semibold text-sm mb-1">
-                    Yes, protect patents
-                  </div>
-                  <div class="text-xs text-slate-500 dark:text-slate-400">
-                    Explicit grant of patent rights and protection against
-                    patent lawsuits.
-                  </div>
-                </button>
-                <button
-                  onclick="setWizardVal('patent', 'no')"
-                  class="wiz-btn-patent p-4 border rounded-xl text-left border-slate-200 dark:border-slate-800 hover:border-brand-500 dark:hover:border-brand-500 transition-all"
-                  data-val="no"
-                >
-                  <div class="font-semibold text-sm mb-1">
-                    Keep it short & simple
-                  </div>
-                  <div class="text-xs text-slate-500 dark:text-slate-400">
-                    Minimal legal text, lightweight attribution only.
-                  </div>
-                </button>
-              </div>
-            </div>
-
-            <!-- Step 3 -->
-            <div>
-              <label
-                class="block text-sm font-semibold text-slate-900 dark:text-slate-200 mb-2"
-                >3. How strict should derivative code requirements be?</label
-              >
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <button
-                  onclick="setWizardVal('scope', 'entire')"
-                  class="wiz-btn-scope p-4 border rounded-xl text-left border-slate-200 dark:border-slate-800 hover:border-brand-500 dark:hover:border-brand-500 transition-all"
-                  data-val="entire"
-                >
-                  <div class="font-semibold text-sm mb-1">
-                    Whole Project Level (Strong)
-                  </div>
-                  <div class="text-xs text-slate-500 dark:text-slate-400">
-                    Any code linked or combined must be open sourced under same
-                    license.
-                  </div>
-                </button>
-                <button
-                  onclick="setWizardVal('scope', 'file')"
-                  class="wiz-btn-scope p-4 border rounded-xl text-left border-slate-200 dark:border-slate-800 hover:border-brand-500 dark:hover:border-brand-500 transition-all"
-                  data-val="file"
-                >
-                  <div class="font-semibold text-sm mb-1">
-                    File-Level Only (Weak) / None
-                  </div>
-                  <div class="text-xs text-slate-500 dark:text-slate-400">
-                    Only modified files must remain open; can be embedded in
-                    proprietary apps.
-                  </div>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Wizard Recommendation Output -->
-          <div
-            id="wizardResult"
-            class="mt-8 p-6 bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 rounded-xl hidden"
-          >
-            <div
-              class="text-xs font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400 mb-1"
-            >
-              Recommended License
-            </div>
-            <h3
-              id="recTitle"
-              class="text-2xl font-bold text-slate-900 dark:text-white mb-2"
-            ></h3>
-            <p
-              id="recDesc"
-              class="text-sm text-slate-600 dark:text-slate-300 mb-4"
-            ></p>
-            <div class="flex items-center gap-3">
-              <button
-                id="recDetailBtn"
-                class="px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white text-xs font-semibold rounded-lg transition-colors"
-              >
-                Read Details & Copy Template
-              </button>
-              <button
-                onclick="resetWizard()"
-                class="px-4 py-2 text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 text-xs font-medium"
-              >
-                Start Over
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Comprehensive Comparison Table Section -->
-      <section
-        id="matrix"
-        class="py-16 bg-white dark:bg-slate-900 border-y border-slate-200 dark:border-slate-800"
-      >
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div
-            class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4"
-          >
-            <div>
-              <div
-                class="inline-flex items-center gap-1.5 text-brand-600 dark:text-brand-400 text-xs font-semibold tracking-wider uppercase mb-1"
-              >
-                <i data-lucide="layers" class="w-4 h-4"></i> Interactive Matrix
-              </div>
-              <h2 class="text-3xl font-bold text-slate-900 dark:text-white">
-                Compare GitHub Licenses
-              </h2>
-              <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">
-                Side-by-side breakdown of permissions, conditions, and legal
-                limitations.
-              </p>
-            </div>
-
-            <!-- Controls: Search & Category Filter -->
-            <div class="flex flex-wrap items-center gap-3">
-              <div class="relative">
-                <i
-                  data-lucide="search"
-                  class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
-                ></i>
-                <input
-                  type="text"
-                  id="licenseSearch"
-                  placeholder="Search license..."
-                  class="pl-9 pr-4 py-2 text-sm rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500 w-56"
-                />
-              </div>
-              <div
-                class="flex items-center bg-slate-100 dark:bg-slate-800 p-1 rounded-lg border border-slate-200 dark:border-slate-700 text-xs font-medium"
-              >
-                <button
-                  onclick="filterCategory('All')"
-                  class="cat-pill px-3 py-1.5 rounded-md bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-sm transition-all"
-                  data-cat="All"
-                >
-                  All
-                </button>
-                <button
-                  onclick="filterCategory('Permissive')"
-                  class="cat-pill px-3 py-1.5 rounded-md text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all"
-                  data-cat="Permissive"
-                >
-                  Permissive
-                </button>
-                <button
-                  onclick="filterCategory('Copyleft')"
-                  class="cat-pill px-3 py-1.5 rounded-md text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all"
-                  data-cat="Copyleft"
-                >
-                  Copyleft
-                </button>
-                <button
-                  onclick="filterCategory('Public Domain')"
-                  class="cat-pill px-3 py-1.5 rounded-md text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all"
-                  data-cat="Public Domain"
-                >
-                  Public Domain
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Table Container -->
-          <div
-            class="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm"
-          >
-            <table class="w-full text-left border-collapse text-sm">
-              <thead>
-                <tr
-                  class="bg-slate-50 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 uppercase text-xs tracking-wider"
-                >
-                  <th class="p-4">License</th>
-                  <th class="p-4">Category</th>
-                  <th class="p-4 text-center">Commercial Use</th>
-                  <th class="p-4 text-center">Modifications</th>
-                  <th class="p-4 text-center">Distribution</th>
-                  <th class="p-4 text-center">Patent Grant</th>
-                  <th class="p-4">Copyleft Level</th>
-                  <th class="p-4 text-right">Action</th>
-                </tr>
-              </thead>
-              <tbody
-                id="licenseTableBody"
-                class="divide-y divide-slate-200 dark:divide-slate-800"
-              >
-                <!-- Dynamically populated via JS -->
-              </tbody>
-            </table>
-            <div
-              id="noResults"
-              class="hidden p-8 text-center text-slate-500 dark:text-slate-400 text-sm"
-            >
-              No licenses match your search criteria.
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Detailed Catalog Cards -->
-      <section
-        id="licenses"
-        class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
-      >
-        <div class="text-center max-w-3xl mx-auto mb-12">
-          <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-3">
-            In-Depth License Explanations
-          </h2>
-          <p class="text-slate-600 dark:text-slate-400 text-sm">
-            Understand exactly what obligations and freedoms each license
-            imposes before placing it into your repository.
-          </p>
-        </div>
-
-        <div
-          id="catalogGrid"
-          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-          <!-- Dynamically populated via JS -->
-        </div>
-      </section>
-    </main>
-
-    <!-- Detail Modal -->
-    <div
-      id="licenseModal"
-      class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300"
-    >
-      <div
-        class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl max-w-2xl w-full max-h-[90vh] flex flex-col shadow-2xl transform scale-95 transition-transform duration-300"
-        id="modalContainer"
-      >
-        <div
-          class="flex items-center justify-between p-6 border-b border-slate-200 dark:border-slate-800"
-        >
-          <div>
-            <h3
-              id="modalTitle"
-              class="text-xl font-bold text-slate-900 dark:text-white"
-            ></h3>
-            <span
-              id="modalCategory"
-              class="text-xs px-2.5 py-0.5 rounded-full font-medium inline-block mt-1"
-            ></span>
-          </div>
-          <button
-            onclick="closeModal()"
-            class="text-slate-400 hover:text-slate-600 dark:hover:text-white p-2"
-          >
-            <i data-lucide="x" class="w-5 h-5"></i>
-          </button>
-        </div>
-        <div
-          class="p-6 overflow-y-auto space-y-6 text-sm text-slate-600 dark:text-slate-300"
-        >
-          <div>
-            <h4 class="font-semibold text-slate-900 dark:text-white mb-2">
-              Overview
-            </h4>
-            <p id="modalOverview"></p>
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div
-              class="p-3 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 rounded-lg"
-            >
-              <div
-                class="font-bold text-emerald-800 dark:text-emerald-400 text-xs mb-1 flex items-center gap-1"
-              >
-                <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
-                Permissions
-              </div>
-              <ul
-                id="modalPermissions"
-                class="text-xs space-y-1 text-emerald-900 dark:text-emerald-300 list-disc list-inside"
-              ></ul>
-            </div>
-            <div
-              class="p-3 bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-800 rounded-lg"
-            >
-              <div
-                class="font-bold text-rose-800 dark:text-rose-400 text-xs mb-1 flex items-center gap-1"
-              >
-                <i data-lucide="x-circle" class="w-3.5 h-3.5"></i> Limitations
-              </div>
-              <ul
-                id="modalLimitations"
-                class="text-xs space-y-1 text-rose-900 dark:text-rose-300 list-disc list-inside"
-              ></ul>
-            </div>
-            <div
-              class="p-3 bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 rounded-lg"
-            >
-              <div
-                class="font-bold text-blue-800 dark:text-blue-400 text-xs mb-1 flex items-center gap-1"
-              >
-                <i data-lucide="info" class="w-3.5 h-3.5"></i> Conditions
-              </div>
-              <ul
-                id="modalConditions"
-                class="text-xs space-y-1 text-blue-900 dark:text-blue-300 list-disc list-inside"
-              ></ul>
-            </div>
-          </div>
-
-          <div>
-            <div class="flex items-center justify-between mb-2">
-              <h4 class="font-semibold text-slate-900 dark:text-white">
-                Standard License Text
-              </h4>
-              <button
-                id="copyModalSnippetBtn"
-                onclick="copySnippet()"
-                class="text-xs flex items-center gap-1 text-brand-600 dark:text-brand-400 font-semibold hover:underline"
-              >
-                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy to Clipboard
-              </button>
-            </div>
-            <pre
-              id="modalSnippet"
-              class="p-4 bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-xs font-mono whitespace-pre-wrap text-slate-800 dark:text-slate-300 overflow-x-auto max-h-48"
-            ></pre>
-          </div>
-        </div>
-        <div
-          class="p-4 border-t border-slate-200 dark:border-slate-800 flex justify-end"
-        >
-          <button
-            onclick="closeModal()"
-            class="px-4 py-2 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-semibold rounded-lg transition-colors"
-          >
-            Close
-          </button>
-        </div>
+        <!-- Theme Toggle Button -->
+        <button id="theme-toggle" class="theme-toggle-btn" type="button" aria-label="Toggle Theme" data-i18n-title="nav_theme">
+          <svg id="theme-icon" width="18" height="18" viewBox="0 0 24 24">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </button>
       </div>
     </div>
+  </header>
 
-    <!-- Footer -->
-    <footer
-      class="mt-auto border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 py-8"
-    >
-      <div
-        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-slate-500 dark:text-slate-400"
-      >
-        <p class="mb-2">
-          <strong>Disclaimer:</strong> This tool provides informational
-          reference and is not formal legal advice. Consult legal counsel for
-          critical corporate licensing requirements.
+  <!-- =========================================================================
+       2. Main Content
+       ========================================================================= -->
+  <main id="home">
+    
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-content">
+        <div class="hero-pill">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          <span data-i18n="hero_badge">Production-Ready Architecture</span>
+        </div>
+        
+        <h1 class="hero-title">
+          <span data-i18n="hero_title_start">Master Open Source Licenses &</span>
+          <span class="gradient-text" data-i18n="hero_title_highlight">Git DevOps</span>
+          <span data-i18n="hero_title_end">Architecture</span>
+        </h1>
+        
+        <p class="hero-description" data-i18n="hero_description">
+          Without a license, default copyright laws apply. Choose the right open source license for your repository, understand public vs private trade-offs, and master the universe of .gitignore templates.
         </p>
-        <p>
-          &copy; 2026 OpenLicense Guide. All licenses referenced belong to their
-          respective copyright foundations.
-        </p>
-      </div>
-    </footer>
 
-    <!-- Application Logic -->
-    <script>
-      // Complete License Dataset
-      const licensesData = [
-        {
-          id: "mit",
-          name: "MIT License",
-          category: "Permissive",
-          commercial: true,
-          modification: true,
-          distribution: true,
-          patentGrant: false,
-          copyleft: "None",
-          description:
-            "A short, simple permissive license with conditions only requiring preservation of copyright and license notices.",
-          whenToUse:
-            "When you want maximum adoption, zero headache, and don’t mind others using your code in closed-source commercial software.",
-          permissions: [
-            "Commercial use",
-            "Modification",
-            "Distribution",
-            "Private use",
-          ],
-          limitations: ["Liability", "Warranty"],
-          conditions: ["License and copyright notice inclusion"],
-          snippet: `MIT License
+        <div class="hero-cta-group">
+          <a href="#matrix" class="btn btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="3" y1="9" x2="21" y2="9"></line>
+              <line x1="9" y1="21" x2="9" y2="9"></line>
+            </svg>
+            <span data-i18n="hero_btn_matrix">Compare Licenses</span>
+          </a>
+          <a href="#git-guide" class="btn btn-secondary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="4 17 10 11 4 5"></polyline>
+              <line x1="12" y1="19" x2="20" y2="19"></line>
+            </svg>
+            <span data-i18n="hero_btn_git">Explore Git Guide</span>
+          </a>
+        </div>
 
-Copyright (c) [year] [fullname]
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.`,
-        },
-        {
-          id: "apache-2",
-          name: "Apache License 2.0",
-          category: "Permissive",
-          commercial: true,
-          modification: true,
-          distribution: true,
-          patentGrant: true,
-          copyleft: "None",
-          description:
-            "A permissive license that also provides an explicit grant of patent rights from contributors to users and protects trademarks.",
-          whenToUse:
-            "When you want permissive usage, but also want strong protection against patent trolls or contributors suing users over patent infringement.",
-          permissions: [
-            "Commercial use",
-            "Modification",
-            "Distribution",
-            "Patent use",
-            "Private use",
-          ],
-          limitations: ["Trademark use", "Liability", "Warranty"],
-          conditions: [
-            "License and copyright notice",
-            "State changes made to files",
-          ],
-          snippet: `Copyright [year] [name of copyright owner]
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.`,
-        },
-        {
-          id: "gpl-3",
-          name: "GNU GPL v3",
-          category: "Copyleft",
-          commercial: true,
-          modification: true,
-          distribution: true,
-          patentGrant: true,
-          copyleft: "Strong (Whole project)",
-          description:
-            "A strong copyleft license requiring anyone who distributes modified or combined works to make the full source code available under GPL v3.",
-          whenToUse:
-            "When you want to ensure the code and any future improvements stay forever free and open source for the community.",
-          permissions: [
-            "Commercial use",
-            "Modification",
-            "Distribution",
-            "Patent use",
-          ],
-          limitations: ["Liability", "Warranty"],
-          conditions: [
-            "Disclose source code",
-            "License and copyright notice",
-            "Same license (Copyleft)",
-            "State changes",
-          ],
-          snippet: `GNU GENERAL PUBLIC LICENSE
-Version 3, 29 June 2007
-
-Copyright (C) [year] [fullname]
-Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed.
-
-This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
-
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY.`,
-        },
-        {
-          id: "bsd-3",
-          name: "BSD 3-Clause License",
-          category: "Permissive",
-          commercial: true,
-          modification: true,
-          distribution: true,
-          patentGrant: false,
-          copyleft: "None",
-          description:
-            "Similar to MIT, but with a specific third clause forbidding using the names of copyright holders or contributors for endorsement without permission.",
-          whenToUse:
-            "When you want a permissive license but want legal protection against companies using your name to endorse their derivatives.",
-          permissions: [
-            "Commercial use",
-            "Modification",
-            "Distribution",
-            "Private use",
-          ],
-          limitations: ["Liability", "Warranty"],
-          conditions: [
-            "License and copyright notice",
-            "No endorsement without permission",
-          ],
-          snippet: `BSD 3-Clause License
-
-Copyright (c) [year], [fullname]
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
-1. Redistributions of source code must retain the above copyright notice.
-2. Redistributions in binary form must reproduce the above copyright notice.
-3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.`,
-        },
-        {
-          id: "bsd-2",
-          name: "BSD 2-Clause License",
-          category: "Permissive",
-          commercial: true,
-          modification: true,
-          distribution: true,
-          patentGrant: false,
-          copyleft: "None",
-          description:
-            "A streamlined version of the BSD license without the non-endorsement clause, functionally near-identical to MIT.",
-          whenToUse:
-            "When you want simple, non-restrictive attribution rights for your code.",
-          permissions: [
-            "Commercial use",
-            "Modification",
-            "Distribution",
-            "Private use",
-          ],
-          limitations: ["Liability", "Warranty"],
-          conditions: ["License and copyright notice"],
-          snippet: `BSD 2-Clause License
-
-Copyright (c) [year], [fullname]
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without modification, are permitted provided that conditions are met:
-1. Redistributions of source code must retain the above copyright notice.
-2. Redistributions in binary form must reproduce the above copyright notice in the documentation.`,
-        },
-        {
-          id: "mpl-2",
-          name: "Mozilla Public License 2.0",
-          category: "Copyleft",
-          commercial: true,
-          modification: true,
-          distribution: true,
-          patentGrant: true,
-          copyleft: "Weak (File-level)",
-          description:
-            "A middle ground between MIT and GPL. Modifications to licensed files must remain open source, but can be bundled with proprietary code into larger systems.",
-          whenToUse:
-            "When you want improvements to your core library files to stay open, but still allow commercial teams to integrate it into proprietary applications.",
-          permissions: [
-            "Commercial use",
-            "Modification",
-            "Distribution",
-            "Patent use",
-          ],
-          limitations: ["Trademark use", "Liability", "Warranty"],
-          conditions: [
-            "Disclose source of modified files",
-            "License and copyright notice",
-          ],
-          snippet: `This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. 
-If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/.`,
-        },
-        {
-          id: "isc",
-          name: "ISC License",
-          category: "Permissive",
-          commercial: true,
-          modification: true,
-          distribution: true,
-          patentGrant: false,
-          copyleft: "None",
-          description:
-            "Functionally identical to the 2-Clause BSD and MIT licenses, but written with the most concise language possible, removing Berne convention redundancies.",
-          whenToUse:
-            "When you want the absolute shortest permissive license text (popularized by OpenBSD and npm default).",
-          permissions: [
-            "Commercial use",
-            "Modification",
-            "Distribution",
-            "Private use",
-          ],
-          limitations: ["Liability", "Warranty"],
-          conditions: ["License and copyright notice"],
-          snippet: `ISC License
-
-Copyright (c) [year] [fullname]
-
-Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES.`,
-        },
-        {
-          id: "unlicense",
-          name: "The Unlicense",
-          category: "Public Domain",
-          commercial: true,
-          modification: true,
-          distribution: true,
-          patentGrant: false,
-          copyleft: "None",
-          description:
-            "A template intended to dedicate software to the public domain, releasing all copyright restrictions worldwide.",
-          whenToUse:
-            "When you do not care about receiving attribution and want to waive all copyright claims unconditionally.",
-          permissions: [
-            "Commercial use",
-            "Modification",
-            "Distribution",
-            "Private use",
-          ],
-          limitations: ["Liability", "Warranty"],
-          conditions: ["None"],
-          snippet: `This is free and unencumbered software released into the public domain.
-
-Anyone is free to copy, modify, publish, use, compile, sell, or distribute this software, either in source code form or as a compiled binary, for any purpose, commercial or non-commercial, and by any means.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.`,
-        },
-      ];
-
-      // State Variables
-      let currentCategoryFilter = "All";
-      let searchQuery = "";
-      const wizardState = { philosophy: null, patent: null, scope: null };
-
-      // DOM Elements
-      const tableBody = document.getElementById("licenseTableBody");
-      const catalogGrid = document.getElementById("catalogGrid");
-      const searchInput = document.getElementById("licenseSearch");
-      const noResults = document.getElementById("noResults");
-
-      // Initialize Theme
-      function initTheme() {
-        const savedTheme = localStorage.getItem("theme");
-        const prefersDark = window.matchMedia(
-          "(prefers-color-scheme: dark)",
-        ).matches;
-        if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
-          document.documentElement.classList.add("dark");
-          document
-            .getElementById("themeIcon")
-            .setAttribute("data-lucide", "sun");
-        } else {
-          document.documentElement.classList.remove("dark");
-          document
-            .getElementById("themeIcon")
-            .setAttribute("data-lucide", "moon");
-        }
-        lucide.createIcons();
-      }
-
-      document.getElementById("themeToggle").addEventListener("click", () => {
-        const isDark = document.documentElement.classList.toggle("dark");
-        localStorage.setItem("theme", isDark ? "dark" : "light");
-        document
-          .getElementById("themeIcon")
-          .setAttribute("data-lucide", isDark ? "sun" : "moon");
-        lucide.createIcons();
-      });
-
-      // Render Table
-      function renderTable() {
-        const filtered = licensesData.filter((lic) => {
-          const matchesCat =
-            currentCategoryFilter === "All" ||
-            lic.category === currentCategoryFilter;
-          const matchesQuery =
-            lic.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            lic.description.toLowerCase().includes(searchQuery.toLowerCase());
-          return matchesCat && matchesQuery;
-        });
-
-        tableBody.innerHTML = "";
-        if (filtered.length === 0) {
-          noResults.classList.remove("hidden");
-        } else {
-          noResults.classList.add("hidden");
-          filtered.forEach((lic) => {
-            const row = document.createElement("tr");
-            row.className =
-              "hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors";
-
-            let badgeColor =
-              "bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-300";
-            if (lic.category === "Permissive")
-              badgeColor =
-                "bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-400 border border-emerald-300 dark:border-emerald-800";
-            if (lic.category === "Copyleft")
-              badgeColor =
-                "bg-blue-100 text-blue-800 dark:bg-blue-950 dark:text-blue-400 border border-blue-300 dark:border-blue-800";
-            if (lic.category === "Public Domain")
-              badgeColor =
-                "bg-purple-100 text-purple-800 dark:bg-purple-950 dark:text-purple-400 border border-purple-300 dark:border-purple-800";
-
-            row.innerHTML = `
-            <td class="p-4 font-semibold text-slate-900 dark:text-white">${lic.name}</td>
-            <td class="p-4"><span class="px-2 py-0.5 rounded text-xs font-semibold ${badgeColor}">${lic.category}</span></td>
-            <td class="p-4 text-center">${lic.commercial ? '<i data-lucide="check" class="w-4 h-4 text-emerald-500 mx-auto"></i>' : '<i data-lucide="x" class="w-4 h-4 text-rose-500 mx-auto"></i>'}</td>
-            <td class="p-4 text-center">${lic.modification ? '<i data-lucide="check" class="w-4 h-4 text-emerald-500 mx-auto"></i>' : '<i data-lucide="x" class="w-4 h-4 text-rose-500 mx-auto"></i>'}</td>
-            <td class="p-4 text-center">${lic.distribution ? '<i data-lucide="check" class="w-4 h-4 text-emerald-500 mx-auto"></i>' : '<i data-lucide="x" class="w-4 h-4 text-rose-500 mx-auto"></i>'}</td>
-            <td class="p-4 text-center">${lic.patentGrant ? '<i data-lucide="check" class="w-4 h-4 text-emerald-500 mx-auto"></i>' : '<i data-lucide="minus" class="w-4 h-4 text-slate-400 mx-auto"></i>'}</td>
-            <td class="p-4 font-mono text-xs text-slate-600 dark:text-slate-400">${lic.copyleft}</td>
-            <td class="p-4 text-right">
-              <button onclick="openModal('${lic.id}')" class="text-xs px-3 py-1.5 rounded bg-brand-50 hover:bg-brand-100 dark:bg-brand-950/60 dark:hover:bg-brand-900/60 text-brand-600 dark:text-brand-400 font-semibold transition-colors">
-                Details
-              </button>
-            </td>
-          `;
-            tableBody.appendChild(row);
-          });
-        }
-        lucide.createIcons();
-      }
-
-      // Render Catalog Cards
-      function renderCatalog() {
-        catalogGrid.innerHTML = "";
-        licensesData.forEach((lic) => {
-          const card = document.createElement("div");
-          card.className =
-            "bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 flex flex-col justify-between hover:border-brand-500/50 transition-all shadow-sm";
-          card.innerHTML = `
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <h3 class="font-bold text-lg text-slate-900 dark:text-white">${lic.name}</h3>
-              <span class="text-xs px-2 py-0.5 rounded font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">${lic.category}</span>
-            </div>
-            <p class="text-xs text-slate-600 dark:text-slate-400 mb-4 line-clamp-3">${lic.description}</p>
-            <div class="bg-slate-50 dark:bg-slate-800/50 p-3 rounded-lg mb-4 text-xs">
-              <span class="font-semibold text-slate-900 dark:text-slate-200">When to use: </span>
-              <span class="text-slate-600 dark:text-slate-400">${lic.whenToUse}</span>
-            </div>
+        <!-- Key Metrics Cards -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-number" data-i18n="stat_licenses_count">6+</div>
+            <div class="stat-label" data-i18n="stat_licenses_label">Standard Licenses Analyzed</div>
           </div>
-          <button onclick="openModal('${lic.id}')" class="w-full mt-2 py-2 px-3 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 rounded-lg text-xs font-semibold transition-colors flex items-center justify-center gap-1.5">
-            <i data-lucide="file-text" class="w-3.5 h-3.5"></i> View Details & Template
-          </button>
-        `;
-          catalogGrid.appendChild(card);
-        });
-        lucide.createIcons();
-      }
+          <div class="stat-card">
+            <div class="stat-number" data-i18n="stat_languages_count">7</div>
+            <div class="stat-label" data-i18n="stat_languages_label">Native Languages Supported</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" data-i18n="stat_git_ready_count">100%</div>
+            <div class="stat-label" data-i18n="stat_git_ready_label">DevOps & CI/CD Compliant</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-      // Filter Controls
-      function filterCategory(cat) {
-        currentCategoryFilter = cat;
-        document.querySelectorAll(".cat-pill").forEach((btn) => {
-          if (btn.getAttribute("data-cat") === cat) {
-            btn.className =
-              "cat-pill px-3 py-1.5 rounded-md bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-sm transition-all";
-          } else {
-            btn.className =
-              "cat-pill px-3 py-1.5 rounded-md text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all";
-          }
-        });
-        renderTable();
-      }
+    <!-- =========================================================================
+         3. Interactive License Matrix Section
+         ========================================================================= -->
+    <section class="section" id="matrix">
+      <div class="container">
+        <header class="section-header">
+          <h2 class="section-title" data-i18n="matrix_title">Interactive License Matrix</h2>
+          <p class="section-subtitle" data-i18n="matrix_subtitle">Filter and compare permissions, conditions, and limitations across popular software licenses.</p>
+        </header>
 
-      searchInput.addEventListener("input", (e) => {
-        searchQuery = e.target.value;
-        renderTable();
-      });
+        <!-- Matrix Controls: Filters & Search Input -->
+        <div class="matrix-controls">
+          <div class="filters-group" role="tablist" aria-label="License Categories">
+            <button class="filter-btn active" data-filter="all" type="button" data-i18n="filter_all">All Licenses</button>
+            <button class="filter-btn" data-filter="permissive" type="button" data-i18n="filter_permissive">Permissive</button>
+            <button class="filter-btn" data-filter="copyleft" type="button" data-i18n="filter_copyleft">Copyleft</button>
+            <button class="filter-btn" data-filter="public" type="button" data-i18n="filter_public_domain">Public Domain</button>
+          </div>
 
-      // Wizard Logic
-      function setWizardVal(key, val) {
-        wizardState[key] = val;
+          <div class="search-input-wrapper">
+            <span class="search-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </span>
+            <input type="text" id="search-input" class="search-input" placeholder="Search license (e.g., MIT, Apache, GPL)..." data-i18n-placeholder="search_placeholder" aria-label="Search licenses">
+          </div>
+        </div>
 
-        // Update Button Styling
-        document.querySelectorAll(`.wiz-btn-${key}`).forEach((btn) => {
-          if (btn.getAttribute("data-val") === val) {
-            btn.classList.add(
-              "border-brand-600",
-              "bg-brand-50",
-              "dark:bg-brand-950/40",
-              "dark:border-brand-500",
-            );
-            btn.classList.remove("border-slate-200", "dark:border-slate-800");
-          } else {
-            btn.classList.remove(
-              "border-brand-600",
-              "bg-brand-50",
-              "dark:bg-brand-950/40",
-              "dark:border-brand-500",
-            );
-            btn.classList.add("border-slate-200", "dark:border-slate-800");
-          }
-        });
+        <!-- License Cards Grid -->
+        <div class="licenses-grid" id="licenses-container">
+          
+          <!-- Card 1: MIT -->
+          <article class="license-card" data-category="permissive">
+            <div>
+              <div class="license-card-header">
+                <h3 class="license-card-title" data-i18n="lic_mit_title">MIT License</h3>
+                <span class="license-badge badge-permissive" data-i18n="badge_permissive">Permissive</span>
+              </div>
+              <p class="license-card-desc" data-i18n="lic_mit_desc">
+                A short and simple permissive license with conditions only requiring preservation of copyright and license notices. Unrestricted commercial reuse.
+              </p>
+              <div class="license-tags">
+                <span class="tag-item allowed">✓ <span data-i18n="tag_commercial">Commercial use</span></span>
+                <span class="tag-item allowed">✓ <span data-i18n="tag_distribution">Distribution</span></span>
+                <span class="tag-item allowed">✓ <span data-i18n="tag_modification">Modification</span></span>
+                <span class="tag-item prohibited">✕ <span data-i18n="tag_liability">No liability</span></span>
+                <span class="tag-item prohibited">✕ <span data-i18n="tag_warranty">No warranty</span></span>
+              </div>
+            </div>
+            <div class="license-card-footer">
+              <span class="spdx-id">MIT</span>
+              <button class="copy-btn" type="button" data-copy-text="MIT" data-i18n="btn_copy_badge">Copy SPDX ID</button>
+            </div>
+          </article>
 
-        evaluateWizard();
-      }
+          <!-- Card 2: Apache 2.0 -->
+          <article class="license-card" data-category="permissive">
+            <div>
+              <div class="license-card-header">
+                <h3 class="license-card-title" data-i18n="lic_apache_title">Apache License 2.0</h3>
+                <span class="license-badge badge-permissive" data-i18n="badge_permissive">Permissive</span>
+              </div>
+              <p class="license-card-desc" data-i18n="lic_apache_desc">
+                A permissive license that also provides an express grant of patent rights from contributors to users, with trademark protection clauses.
+              </p>
+              <div class="license-tags">
+                <span class="tag-item allowed">✓ <span data-i18n="tag_commercial">Commercial use</span></span>
+                <span class="tag-item allowed">✓ <span data-i18n="tag_patent">Patent grant</span></span>
+                <span class="tag-item allowed">✓ <span data-i18n="tag_modification">Modification</span></span>
+                <span class="tag-item condition">ℹ <span data-i18n="tag_source_disclosure">Disclose source</span></span>
+                <span class="tag-item prohibited">✕ <span data-i18n="tag_liability">No liability</span></span>
+              </div>
+            </div>
+            <div class="license-card-footer">
+              <span class="spdx-id">Apache-2.0</span>
+              <button class="copy-btn" type="button" data-copy-text="Apache-2.0" data-i18n="btn_copy_badge">Copy SPDX ID</button>
+            </div>
+          </article>
 
-      function evaluateWizard() {
-        if (!wizardState.philosophy) return;
+          <!-- Card 3: GPLv3 -->
+          <article class="license-card" data-category="copyleft">
+            <div>
+              <div class="license-card-header">
+                <h3 class="license-card-title" data-i18n="lic_gpl_title">GNU GPL v3.0</h3>
+                <span class="license-badge badge-copyleft" data-i18n="badge_copyleft">Strong Copyleft</span>
+              </div>
+              <p class="license-card-desc" data-i18n="lic_gpl_desc">
+                Permissions of this strong copyleft license are conditioned on making available complete source code of licensed works and modifications under GPLv3.
+              </p>
+              <div class="license-tags">
+                <span class="tag-item allowed">✓ <span data-i18n="tag_commercial">Commercial use</span></span>
+                <span class="tag-item allowed">✓ <span data-i18n="tag_patent">Patent grant</span></span>
+                <span class="tag-item condition">ℹ <span data-i18n="tag_source_disclosure">Disclose source</span></span>
+                <span class="tag-item condition">ℹ <span data-i18n="tag_same_license">Same license</span></span>
+              </div>
+            </div>
+            <div class="license-card-footer">
+              <span class="spdx-id">GPL-3.0-only</span>
+              <button class="copy-btn" type="button" data-copy-text="GPL-3.0-only" data-i18n="btn_copy_badge">Copy SPDX ID</button>
+            </div>
+          </article>
 
-        let recId = "mit";
+          <!-- Card 4: BSD 3-Clause -->
+          <article class="license-card" data-category="permissive">
+            <div>
+              <div class="license-card-header">
+                <h3 class="license-card-title" data-i18n="lic_bsd_title">BSD 3-Clause License</h3>
+                <span class="license-badge badge-permissive" data-i18n="badge_permissive">Permissive</span>
+              </div>
+              <p class="license-card-desc" data-i18n="lic_bsd_desc">
+                A permissive license similar to the MIT License, but with a specific 3rd clause prohibiting endorsement using authors' names without permission.
+              </p>
+              <div class="license-tags">
+                <span class="tag-item allowed">✓ <span data-i18n="tag_commercial">Commercial use</span></span>
+                <span class="tag-item allowed">✓ <span data-i18n="tag_distribution">Distribution</span></span>
+                <span class="tag-item allowed">✓ <span data-i18n="tag_modification">Modification</span></span>
+                <span class="tag-item prohibited">✕ <span data-i18n="tag_liability">No liability</span></span>
+              </div>
+            </div>
+            <div class="license-card-footer">
+              <span class="spdx-id">BSD-3-Clause</span>
+              <button class="copy-btn" type="button" data-copy-text="BSD-3-Clause" data-i18n="btn_copy_badge">Copy SPDX ID</button>
+            </div>
+          </article>
 
-        if (wizardState.philosophy === "none") {
-          recId = "unlicense";
-        } else if (wizardState.philosophy === "permissive") {
-          if (wizardState.patent === "yes") {
-            recId = "apache-2";
-          } else {
-            recId = "mit";
-          }
-        } else if (wizardState.philosophy === "copyleft") {
-          if (wizardState.scope === "file") {
-            recId = "mpl-2";
-          } else {
-            recId = "gpl-3";
-          }
-        }
+          <!-- Card 5: AGPLv3 -->
+          <article class="license-card" data-category="copyleft">
+            <div>
+              <div class="license-card-header">
+                <h3 class="license-card-title" data-i18n="lic_agpl_title">GNU Affero GPL v3.0</h3>
+                <span class="license-badge badge-copyleft" data-i18n="badge_copyleft">Strong Copyleft</span>
+              </div>
+              <p class="license-card-desc" data-i18n="lic_agpl_desc">
+                Extended copyleft license closing the SaaS/cloud loophole by requiring source code disclosure to users interacting with the software over a network.
+              </p>
+              <div class="license-tags">
+                <span class="tag-item allowed">✓ <span data-i18n="tag_commercial">Commercial use</span></span>
+                <span class="tag-item condition">ℹ <span data-i18n="tag_source_disclosure">Disclose source</span></span>
+                <span class="tag-item condition">ℹ <span data-i18n="tag_same_license">Same license</span></span>
+                <span class="tag-item allowed">✓ <span data-i18n="tag_patent">Patent grant</span></span>
+              </div>
+            </div>
+            <div class="license-card-footer">
+              <span class="spdx-id">AGPL-3.0-only</span>
+              <button class="copy-btn" type="button" data-copy-text="AGPL-3.0-only" data-i18n="btn_copy_badge">Copy SPDX ID</button>
+            </div>
+          </article>
 
-        const recLic = licensesData.find((l) => l.id === recId);
-        const resContainer = document.getElementById("wizardResult");
-        document.getElementById("recTitle").textContent = recLic.name;
-        document.getElementById("recDesc").textContent =
-          `${recLic.description} ${recLic.whenToUse}`;
+          <!-- Card 6: The Unlicense -->
+          <article class="license-card" data-category="public">
+            <div>
+              <div class="license-card-header">
+                <h3 class="license-card-title" data-i18n="lic_unlicense_title">The Unlicense</h3>
+                <span class="license-badge badge-public" data-i18n="badge_public_domain">Public Domain</span>
+              </div>
+              <p class="license-card-desc" data-i18n="lic_unlicense_desc">
+                A license with no conditions whatsoever which dedicates works to the public domain. Completely unrestricted for any personal or commercial use.
+              </p>
+              <div class="license-tags">
+                <span class="tag-item allowed">✓ <span data-i18n="tag_commercial">Commercial use</span></span>
+                <span class="tag-item allowed">✓ <span data-i18n="tag_distribution">Distribution</span></span>
+                <span class="tag-item allowed">✓ <span data-i18n="tag_modification">Modification</span></span>
+                <span class="tag-item prohibited">✕ <span data-i18n="tag_liability">No liability</span></span>
+              </div>
+            </div>
+            <div class="license-card-footer">
+              <span class="spdx-id">Unlicense</span>
+              <button class="copy-btn" type="button" data-copy-text="Unlicense" data-i18n="btn_copy_badge">Copy SPDX ID</button>
+            </div>
+          </article>
 
-        const recBtn = document.getElementById("recDetailBtn");
-        recBtn.onclick = () => openModal(recLic.id);
+        </div>
+      </div>
+    </section>
 
-        resContainer.classList.remove("hidden");
-      }
+    <!-- =========================================================================
+         4. DevOps Guide Section: Git & GitHub Mastery
+         ========================================================================= -->
+    <section class="section git-guide-section" id="git-guide">
+      <div class="container">
+        <header class="section-header">
+          <h2 class="section-title" data-i18n="git_section_title">DevOps & Git Version Control Guide</h2>
+          <p class="section-subtitle" data-i18n="git_section_subtitle">Step-by-step repository initialization, public vs private repository comparison, and the complete .gitignore ecosystem.</p>
+        </header>
 
-      function resetWizard() {
-        wizardState.philosophy = null;
-        wizardState.patent = null;
-        wizardState.scope = null;
-        document.querySelectorAll("#wizardQuestions button").forEach((b) => {
-          b.classList.remove(
-            "border-brand-600",
-            "bg-brand-50",
-            "dark:bg-brand-950/40",
-            "dark:border-brand-500",
-          );
-          b.classList.add("border-slate-200", "dark:border-slate-800");
-        });
-        document.getElementById("wizardResult").classList.add("hidden");
-      }
+        <div class="steps-stack">
+          
+          <!-- Step 1: Repository Creation & CLI Initialization -->
+          <article class="step-card">
+            <div class="step-card-header">
+              <span class="step-badge" data-i18n="git_step1_badge">Step 1</span>
+              <h3 class="step-title" data-i18n="git_step1_title">Repository Creation & Initialization</h3>
+            </div>
+            <p class="step-desc" data-i18n="git_step1_desc">
+              Execute standard CLI commands to initialize, stage, commit, rename branch, and link to GitHub/GitLab remote.
+            </p>
 
-      // Modal Handling
-      const modal = document.getElementById("licenseModal");
-      const modalContainer = document.getElementById("modalContainer");
+            <div class="terminal-box">
+              <div class="terminal-header">
+                <div class="terminal-dots">
+                  <span class="terminal-dot dot-red"></span>
+                  <span class="terminal-dot dot-yellow"></span>
+                  <span class="terminal-dot dot-green"></span>
+                </div>
+                <button class="copy-btn" type="button" data-copy-target="git-init-script" data-i18n="git_copy_all">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                  <span>Copy Command</span>
+                </button>
+              </div>
+              <div class="terminal-body" id="git-init-script">
+                <div class="cmd-line"><span class="cmd-prompt">$</span><span class="cmd-text">git init</span><span class="cmd-comment"># Initialise un nouveau dépôt local .git</span></div>
+                <div class="cmd-line"><span class="cmd-prompt">$</span><span class="cmd-text">git add .</span><span class="cmd-comment"># Indexe l'ensemble des fichiers dans la staging area</span></div>
+                <div class="cmd-line"><span class="cmd-prompt">$</span><span class="cmd-text">git commit -m "Initial commit: production architecture"</span><span class="cmd-comment"># Fixe le snapshot initial</span></div>
+                <div class="cmd-line"><span class="cmd-prompt">$</span><span class="cmd-text">git branch -M main</span><span class="cmd-comment"># Définit explicitement la branche principale 'main'</span></div>
+                <div class="cmd-line"><span class="cmd-prompt">$</span><span class="cmd-text">git remote add origin https://github.com/votre-compte/votre-depot.git</span><span class="cmd-comment"># Relie au dépôt distant</span></div>
+                <div class="cmd-line"><span class="cmd-prompt">$</span><span class="cmd-text">git push -u origin main</span><span class="cmd-comment"># Pousse vers 'main' et configure l'upstream tracking</span></div>
+              </div>
+            </div>
+          </article>
 
-      function openModal(id) {
-        const lic = licensesData.find((l) => l.id === id);
-        if (!lic) return;
+          <!-- Step 2: Public vs Private Comparison Matrix -->
+          <article class="step-card">
+            <div class="step-card-header">
+              <span class="step-badge" data-i18n="git_step2_badge">Step 2</span>
+              <h3 class="step-title" data-i18n="git_step2_title">Public vs Private Repository Matrix</h3>
+            </div>
+            <p class="step-desc" data-i18n="git_step2_desc">
+              Security, visibility, collaboration models, and CI/CD minutes quota evaluation for team governance.
+            </p>
 
-        document.getElementById("modalTitle").textContent = lic.name;
+            <div class="table-responsive">
+              <table class="comparison-table">
+                <thead>
+                  <tr>
+                    <th>Dimension / Critère</th>
+                    <th>Dépôt Public (Open Source)</th>
+                    <th>Dépôt Privé (Propriétaire / Confidentiel)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Visibilité & Indexation</strong></td>
+                    <td>Visible par tous les internautes, indexé sur Google et le moteur de recherche GitHub.</td>
+                    <td>Invisible au public. Strictement réservé aux membres autorisés et audité en interne.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Sécurité & Secrets</strong></td>
+                    <td>Risque élevé en cas de fuite de clés API ou secrets dans l'historique de commits.</td>
+                    <td>Protection des secrets confidentiels, politiques de conformité ISO/SOC2 et audits stricts.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Collaboration & Modèle</strong></td>
+                    <td>Modèle Fork & Pull Request ouvert à la communauté mondiale. Étoiles et visibilité RH.</td>
+                    <td>Gestion des accès basée sur les rôles (RBAC/IAM), branches protégées et revues d'équipe.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>CI/CD & Quotas GitHub Actions</strong></td>
+                    <td>Minutes GitHub Actions 100% <strong>gratuites et illimitées</strong> sur les runners standards.</td>
+                    <td>Quotas mensuels plafonnés (ex. 2 000 min/mois en compte gratuit), puis facturation à l'usage.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Cas d'usage Recommandés</strong></td>
+                    <td>Bibliothèques open source, frameworks, documentations publiques, vitrines techniques.</td>
+                    <td>Code métier propriétaire, SaaS internes, microservices critiques, R&D confidentielle.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
 
-        const catBadge = document.getElementById("modalCategory");
-        catBadge.textContent = lic.category;
-        catBadge.className = `text-xs px-2.5 py-0.5 rounded-full font-medium inline-block mt-1 ${
-          lic.category === "Permissive"
-            ? "bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-400"
-            : lic.category === "Copyleft"
-              ? "bg-blue-100 text-blue-800 dark:bg-blue-950 dark:text-blue-400"
-              : "bg-purple-100 text-purple-800 dark:bg-purple-950 dark:text-purple-400"
-        }`;
+          <!-- Step 3: .gitignore Universe & Templates -->
+          <article class="step-card">
+            <div class="step-card-header">
+              <span class="step-badge" data-i18n="git_step3_badge">Step 3</span>
+              <h3 class="step-title" data-i18n="git_step3_title">.gitignore Universe & Templates</h3>
+            </div>
+            <p class="step-desc" data-i18n="git_step3_desc">
+              From ActionScript and Ada to Node.js, Python, Rust, and Go, plus standard IDE and OS exclusion patterns.
+            </p>
 
-        document.getElementById("modalOverview").textContent =
-          `${lic.description} ${lic.whenToUse}`;
+            <div class="gitignore-categories">
+              <!-- Category 1: Historical & Specialized -->
+              <div class="category-card">
+                <h4 class="category-title">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 14 14"></polyline>
+                  </svg>
+                  Historiques (ActionScript & Ada)
+                </h4>
+                <ul class="category-list">
+                  <li><strong>ActionScript:</strong> <code>bin-debug/</code>, <code>*.swf</code>, <code>*.swc</code>, <code>.actionScriptProperties</code></li>
+                  <li><strong>Ada:</strong> <code>*.ali</code>, <code>*.o</code>, <code>gnat/</code>, <code>b~*.ad[sb]</code></li>
+                </ul>
+              </div>
 
-        const permList = document.getElementById("modalPermissions");
-        permList.innerHTML = lic.permissions
-          .map((p) => `<li>${p}</li>`)
-          .join("");
+              <!-- Category 2: Modern Ecosystems -->
+              <div class="category-card">
+                <h4 class="category-title">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                    <polyline points="2 17 12 22 22 17"></polyline>
+                    <polyline points="2 12 12 17 22 12"></polyline>
+                  </svg>
+                  Écosystèmes Modernes
+                </h4>
+                <ul class="category-list">
+                  <li><strong>Node.js / TS:</strong> <code>node_modules/</code>, <code>dist/</code>, <code>npm-debug.log</code></li>
+                  <li><strong>Python:</strong> <code>__pycache__/</code>, <code>*.pyc</code>, <code>.venv/</code>, <code>*.egg-info</code></li>
+                  <li><strong>Rust / Go:</strong> <code>target/</code>, <code>Cargo.lock</code>, <code>bin/</code>, <code>vendor/</code></li>
+                  <li><strong>C / C++:</strong> <code>*.o</code>, <code>*.obj</code>, <code>build/</code>, <code>CMakeCache.txt</code></li>
+                </ul>
+              </div>
 
-        const limList = document.getElementById("modalLimitations");
-        limList.innerHTML = lic.limitations
-          .map((l) => `<li>${l}</li>`)
-          .join("");
+              <!-- Category 3: IDEs & OS -->
+              <div class="category-card">
+                <h4 class="category-title">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                  </svg>
+                  IDEs & Systèmes d'Exploitation
+                </h4>
+                <ul class="category-list">
+                  <li><strong>VSCode & JetBrains:</strong> <code>.vscode/*</code> (sauf extensions), <code>.idea/</code></li>
+                  <li><strong>macOS:</strong> <code>.DS_Store</code>, <code>.AppleDouble</code></li>
+                  <li><strong>Windows:</strong> <code>Thumbs.db</code>, <code>desktop.ini</code>, <code>$RECYCLE.BIN/</code></li>
+                  <li><strong>Environnement:</strong> <code>.env</code>, <code>.env.local</code>, <code>*.pem</code></li>
+                </ul>
+              </div>
+            </div>
+          </article>
 
-        const condList = document.getElementById("modalConditions");
-        condList.innerHTML = lic.conditions
-          .map((c) => `<li>${c}</li>`)
-          .join("");
+        </div>
+      </div>
+    </section>
 
-        document.getElementById("modalSnippet").textContent = lic.snippet;
+  </main>
 
-        modal.classList.remove("hidden");
-        setTimeout(() => {
-          modal.classList.remove("opacity-0");
-          modalContainer.classList.remove("scale-95");
-        }, 10);
-        lucide.createIcons();
-      }
+  <!-- =========================================================================
+       5. Toast Feedback Element
+       ========================================================================= -->
+  <div id="toast" class="toast" role="status" aria-live="polite">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </svg>
+    <span id="toast-message" data-i18n="copied_toast">Copied to clipboard!</span>
+  </div>
 
-      function closeModal() {
-        modal.classList.add("opacity-0");
-        modalContainer.classList.add("scale-95");
-        setTimeout(() => {
-          modal.classList.add("hidden");
-        }, 300);
-      }
+  <!-- =========================================================================
+       6. Site Footer
+       ========================================================================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="brand-wrapper">
+            <div class="brand-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+              </svg>
+            </div>
+            <span class="brand-title" data-i18n="app_title">OpenLicense & Git Hub Suite</span>
+          </div>
+          <p class="footer-desc" data-i18n="footer_desc">
+            Modern multilingual & themeable web architecture engineered with semantic HTML5, pure CSS3 variables, and vanilla ES6+ i18n logic.
+          </p>
+        </div>
 
-      modal.addEventListener("click", (e) => {
-        if (e.target === modal) closeModal();
-      });
+        <div class="footer-columns">
+          <div>
+            <h4 class="footer-col-title" data-i18n="footer_col_platform">Architecture</h4>
+            <ul class="footer-links">
+              <li><a href="#hero" class="footer-link" data-i18n="nav_home">Home</a></li>
+              <li><a href="#matrix" class="footer-link" data-i18n="nav_licenses">Licenses Matrix</a></li>
+              <li><a href="#git-guide" class="footer-link" data-i18n="nav_git_guide">Git DevOps Guide</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="footer-col-title" data-i18n="footer_col_resources">Documentation</h4>
+            <ul class="footer-links">
+              <li><a href="https://choosealicense.com" target="_blank" rel="noopener noreferrer" class="footer-link">ChooseALicense</a></li>
+              <li><a href="https://spdx.org/licenses/" target="_blank" rel="noopener noreferrer" class="footer-link">SPDX License List</a></li>
+              <li><a href="https://git-scm.com/doc" target="_blank" rel="noopener noreferrer" class="footer-link">Git SCM Manual</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="footer-col-title" data-i18n="footer_col_community">Ecosystem</h4>
+            <ul class="footer-links">
+              <li><a href="https://github.com" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub Docs</a></li>
+              <li><a href="https://gitlab.com" target="_blank" rel="noopener noreferrer" class="footer-link">GitLab Flow</a></li>
+              <li><a href="https://bitbucket.org" target="_blank" rel="noopener noreferrer" class="footer-link">Bitbucket Cloud</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
 
-      // Copy Snippet
-      function copySnippet() {
-        const text = document.getElementById("modalSnippet").textContent;
-        navigator.clipboard.writeText(text).then(() => {
-          const btn = document.getElementById("copyModalSnippetBtn");
-          const original = btn.innerHTML;
-          btn.innerHTML = `<i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500"></i> Copied!`;
-          lucide.createIcons();
-          setTimeout(() => {
-            btn.innerHTML = original;
-            lucide.createIcons();
-          }, 2000);
-        });
-      }
+      <div class="footer-bottom">
+        <p>&copy; 2026 OpenLicense & Git Hub Suite. <span data-i18n="footer_rights">All rights reserved. Open source under MIT License.</span></p>
+        <p>HTML5 • Vanilla CSS3 • ES6+ Native i18n • 7 Locales • LTR/RTL</p>
+      </div>
+    </div>
+  </footer>
 
-      // Initial Execution
-      window.addEventListener("DOMContentLoaded", () => {
-        initTheme();
-        renderTable();
-        renderCatalog();
-      });
-    </script>
-  </body>
+</body>
 </html>
